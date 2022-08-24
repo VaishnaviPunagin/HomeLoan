@@ -36,6 +36,8 @@ namespace HomeLoan.Models
 
 		public int Age { get; set; }
 
+		public string Gender { get; set; }
+
 		//[Required(ErrorMessage = "Please enter your Nationality")]
 		public string Nationality { get; set; }
 

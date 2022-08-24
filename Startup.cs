@@ -27,6 +27,16 @@ namespace HomeLoan
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            //For CORS Policy alloweth
+            services.AddCors(setup =>
+            {
+                setup.AddPolicy("default", options =>
+                {
+                    options.AllowAnyHeader().AllowAnyOrigin().AllowAnyMethod();
+                });
+
+            });
+
             services.AddDbContext<LoanContext>(item => item.UseSqlServer(Configuration.GetConnectionString("MyConStr")));
 
             services.AddControllers();
@@ -39,6 +49,8 @@ namespace HomeLoan
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseCors("default"); //Cross Origin Resource sharing policy
 
             app.UseHttpsRedirection();
 
