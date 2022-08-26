@@ -68,5 +68,14 @@ namespace HomeLoan.Controllers
                 return Ok(temp);
             }
         }
+
+        [Route("loginCheck")]
+        [HttpPost]
+        public ActionResult LoginCheck(UserLogin details)
+        {
+            var temp = _context.Customers.FirstOrDefault(c => c.EmailId == details.EmailId && c.Password == details.Password);
+            return Ok(temp);
+        }
+
     }
 }

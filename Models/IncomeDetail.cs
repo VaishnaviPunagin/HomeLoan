@@ -25,7 +25,7 @@ namespace HomeLoan.Models
 
         public int RetirementAge { get; set; }
 
-        public string OranizationName { get; set; }
+        public string OrganizationName { get; set; }
 
         public string EmployerName { get; set; }
 
