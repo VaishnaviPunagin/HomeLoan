@@ -10,9 +10,9 @@ namespace HomeLoan.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class IncomeDetailController : ControllerBase
+    public class LoanDetailsController : ControllerBase
     {
-        public IncomeDetailController(LoanContext context)
+        public LoanDetailsController(LoanContext context)
         {
             _context = context;
         }
@@ -22,26 +22,26 @@ namespace HomeLoan.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            return Ok(_context.IncomeDetails.ToList());
+            return Ok(_context.LoanDetails.ToList());
         }
 
-
         [HttpPost]
-        public ActionResult Post(IncomeDetail newI)
+        public ActionResult Post(LoanDetail details)
         {
-            _context.IncomeDetails.Add(newI);
-            var temp = _context.Customers.FirstOrDefault(c => c.CustomerId == newI.CustomerId);
-            temp.IncomeDetailsStatus = true;
+            _context.LoanDetails.Add(details);
+            var temp = _context.Customers.FirstOrDefault(c => c.CustomerId == details.CustomerId);
+            temp.LoanDetailsStatus = true;
             _context.SaveChanges();
-            return Ok(temp);
+            return CreatedAtAction("Get", new { id = details });
         }
 
 
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
-            var temp = _context.IncomeDetails.FirstOrDefault(c => c.CustomerId == id);
+            var temp = _context.LoanDetails.FirstOrDefault(l => l.CustomerId == id);
             return Ok(temp);
         }
+
     }
 }

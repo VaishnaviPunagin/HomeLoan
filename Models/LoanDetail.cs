@@ -10,28 +10,22 @@ namespace HomeLoan.Models
     public class LoanDetail
     {
         [Key]
-        public int ApplicationNumber { get; set; }
+        public int LoanId { get; set; }
 
-        [Column(TypeName = "decimal(18,2)")]
         //[Precision(18,2)]?
-        public int AccountNumber { get; set; }
-
-        [Column(TypeName = "decimal(18,2)")]
         public int CustomerId { get; set; }
 
-        [Column(TypeName="decimal(18,2)")]
-        public decimal MaxLoanGrantable { get; set; }
-
         [Column(TypeName = "decimal(18,2)")]
-        public decimal InterestRate { get; set; }
+        public decimal LoanAmount{ get; set; }
 
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal Tenure { get; set; }
+        public int Tenure { get; set; }
 
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal LoanAmount { get; set; }
+        public string BankName { get; set; }
 
-        [Column(TypeName = "decimal(18,2)")]
-        public decimal Balance { get; set; }
+        public string IfscCode { get; set; }
+
+        public string CifNumber { get; set; }
+
+        public string AccountNumber { get; set; }
     }
 }

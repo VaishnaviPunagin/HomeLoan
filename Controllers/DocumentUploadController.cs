@@ -10,9 +10,10 @@ namespace HomeLoan.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
-    public class IncomeDetailController : ControllerBase
+    public class DocumentUploadController : ControllerBase
     {
-        public IncomeDetailController(LoanContext context)
+
+        public DocumentUploadController(LoanContext context)
         {
             _context = context;
         }
@@ -22,26 +23,28 @@ namespace HomeLoan.Controllers
         [HttpGet]
         public ActionResult Get()
         {
-            return Ok(_context.IncomeDetails.ToList());
+            return Ok(_context.DocumentsUploaded.ToList());
         }
 
 
         [HttpPost]
-        public ActionResult Post(IncomeDetail newI)
+        public ActionResult Post(DocumentsUpload docs)
         {
-            _context.IncomeDetails.Add(newI);
-            var temp = _context.Customers.FirstOrDefault(c => c.CustomerId == newI.CustomerId);
-            temp.IncomeDetailsStatus = true;
+            _context.DocumentsUploaded.Add(docs);
+            var temp = _context.Customers.FirstOrDefault(c => c.CustomerId == docs.CustomerId);
+            temp.DocumentUploadStatus = true;
             _context.SaveChanges();
-            return Ok(temp);
+            return CreatedAtAction("Get", new { id = docs });
         }
 
 
         [HttpGet("{id}")]
         public ActionResult Get(int id)
         {
-            var temp = _context.IncomeDetails.FirstOrDefault(c => c.CustomerId == id);
+            var temp = _context.DocumentsUploaded.FirstOrDefault(d => d.CustomerId == id);
             return Ok(temp);
         }
+
+
     }
 }

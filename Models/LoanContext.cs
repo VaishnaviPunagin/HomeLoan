@@ -18,6 +18,8 @@ namespace HomeLoan.Models
         public DbSet<LoanDetail> LoanDetails { get; set; }
         public DbSet<IncomeDetail> IncomeDetails { get; set; }
 
+        public DbSet<DocumentsUpload> DocumentsUploaded { get; set; }
+
         public DbSet<tempor> temp { get; set; }
     }
 

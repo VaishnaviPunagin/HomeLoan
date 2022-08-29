@@ -13,14 +13,14 @@ namespace HomeLoan.Models
 
         public int CustomerId { get; set; }
 
-        public bool PanStatus { get; set; }
+        public string PanCard { get; set; }
 
-        public bool AadharStatus { get; set; }
+        public string AadharCard{ get; set; }
 
-        public bool SalarySlipStatus { get; set; }
+        public string SalarySlip { get; set; }
 
-        public bool NocFromBuilderStatus { get; set; }
+        public string NocFromBuilder { get; set; }
 
-        public bool AgreementToSaleStatus { get; set; }
+        public string AgreementToSale { get; set; }
     }
 }

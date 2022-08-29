@@ -37,7 +37,7 @@ namespace HomeLoan.Controllers
         [HttpPost]
         public ActionResult Post(Customer newC)
         {
-            if (newC.ApplicationStatus == null || newC.CustomerAccountStatus==null)
+            if (newC.ApplicationStatus == null || newC.CustomerAccountStatus == null)
             {
                 newC.ApplicationStatus = "Not Applied";
                 newC.CustomerAccountStatus = true;
@@ -47,7 +47,7 @@ namespace HomeLoan.Controllers
             return CreatedAtAction("Get", new { id = newC });
         }
 
- 
+
         [HttpPut("{id}")]
         public ActionResult Put(int id, Customer modifiedC)
         {
@@ -56,18 +56,30 @@ namespace HomeLoan.Controllers
                 return BadRequest();
             else
             {
-                // _context.Categories.Map(id, temp);
                 temp.FirstName = modifiedC.FirstName;
                 temp.MiddleName = modifiedC.MiddleName;
                 temp.LastName = modifiedC.LastName;
-                temp.Password = modifiedC.Password;
+                //temp.Password = modifiedC.Password;
                 temp.PhoneNumber = modifiedC.PhoneNumber;
-               
-                //temp.Id = modifiedCat.Id;
                 _context.SaveChanges();
                 return Ok(temp);
             }
         }
+
+        [Route("incomeUpdate/{id}")]
+        [HttpPut]
+        public ActionResult Put(int id)
+        {
+            var temp = _context.Customers.FirstOrDefault(c => c.CustomerId == id);
+            if (temp == null)
+                return BadRequest();
+            else
+                temp.IncomeDetailsStatus = true;
+            return Ok(temp);
+        }
+           
+
+
 
         [Route("loginCheck")]
         [HttpPost]
