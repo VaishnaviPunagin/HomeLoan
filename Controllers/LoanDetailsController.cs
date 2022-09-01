@@ -31,6 +31,10 @@ namespace HomeLoan.Controllers
             _context.LoanDetails.Add(details);
             var temp = _context.Customers.FirstOrDefault(c => c.CustomerId == details.CustomerId);
             temp.LoanDetailsStatus = true;
+
+            if (temp.IncomeDetailsStatus == true && temp.LoanDetailsStatus && temp.DocumentUploadStatus == true)
+                temp.ApplicationStatus = "Submitted for Verification";
+
             _context.SaveChanges();
             return CreatedAtAction("Get", new { id = details });
         }
